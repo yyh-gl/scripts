@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+trap "rm -rf *.aux *.log *.dvi *.bbl *.blg" 0
 test -n "$1" || echo "usage: platex2pdf [tex-file]"
 test -n "$1" || exit 1 # 引数が無ければ syntax を表示して終了
 TEX=$*
