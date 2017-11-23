@@ -4,11 +4,11 @@
 if [ $# -eq 0 ]; then
 		ln -s $PWD/ ~/Desktop &&
 		echo "\nMaking Symbolic Link is Done"
-		exit 1
+		exit 0
 elif [ $# -eq 1 ]; then
 		ln -s $PWD/ ~/Desktop/$1 &&
 		echo "\nMaking Symbolic Link is Done"
-		exit 1
+		exit 0
 else
 		echo "[ERROR] Argument Error"
 		echo "mkln [ arg1 ]"
