@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-## Google 検索
+## Firefox 検索
 
 local -A opthash
 zparseopts -D -M -A opthash -- \
@@ -9,8 +9,8 @@ zparseopts -D -M -A opthash -- \
 		   h -help=h
 
 usage() {
-	echo "\nGoogle 検索"
-	echo "Usage: google <option> [argument1]"
+	echo "\nFirefox 検索"
+	echo "Usage: firefox <option> [argument1]"
 	echo 
 	echo "オプション:"
 	echo "[argument1]      : 検索ワード（複数ワード可）"
@@ -26,9 +26,9 @@ if [[ -n "${opthash[(i)-h]}" ]]; then
 	usage
 	exit 1
 elif [[ -n "${opthash[(i)-m]}" ]]; then
-	open -a Google\ Chrome https://mail.google.com/mail/ca/u/0/\#inbox
+	open -a Firefox https://mail.google.com/mail/ca/u/0/\#inbox
 elif [[ -n "${opthash[(i)-c]}" ]]; then
-	open -a Google\ Chrome https://calendar.google.com/calendar/render\?tab=Tc\#main_7
+	open -a Firefox https://calendar.google.com/calendar/render\?tab=Tc\#main_7
 else
     if [ $# != 0 ]; then
 		for i in $*; do
@@ -38,8 +38,8 @@ else
 		opt='search?num=100'
 		opt="${opt}&q=${str}"
 
-		open -a Google\ Chrome http://www.google.co.jp/$opt
+		open -a Firefox http://www.google.co.jp/$opt
 	else
-		open -a Google\ Chrome http://www.google.co.jp/
+		open -a Firefox http://www.google.co.jp/
 	fi
 fi
