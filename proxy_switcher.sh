@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-## プロキシスイッチャー
+## Proxy Switcher
 
 user_name=''
 password=''
