@@ -1,5 +1,5 @@
 proxy=proxy.doshisha.ac.jp:8080
-switch_trigger=DO-NET5
+switch_trigger=Automatic
 
 function set_proxy() {
   export http_proxy=$proxy
