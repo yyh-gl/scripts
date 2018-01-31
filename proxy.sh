@@ -1,45 +1,39 @@
-export http_proxy="http://proxy.doshisha.ac.jp:8080"
-export https_proxy="http://proxy.doshisha.ac.jp:8080"
+proxy=proxy.doshisha.ac.jp:8080
+switch_trigger=DO-NET5
 
+function set_proxy() {
+  export http_proxy=$proxy
+  export HTTP_PROXY=$proxy
+  export ftp_proxy=$proxy
+  export FTP_PROXY=$proxy
+  export all_proxy=$proxy
+  export ALL_PROXY=$proxy
+  export https_proxy=$proxy
+  export HTTPS_PROXY=$proxy
 
-local -A opthash
-zparseopts -D -M -A opthash -- \
-		   m -mail=m \
-		   c -calendar=c\
-		   h -help=h
-
-usage() {
-	echo "\nGoogle chrome 検索"
-	echo "Usage: chrome <option> [argument1]"
-	echo 
-	echo "オプション:"
-	echo "[argument1]      : 検索ワード（複数ワード可）"
-	echo "  -m, --mail     : Google Mail を開く"
-	echo "  -c, --calendar : Google Calendar を開く"
-	echo "  -h, --help     : ヘルプ表示"
-	echo
-	exit 1
+  git config --global http.proxy $proxy
+  git config --global https.proxy $proxy
+  git config --global url."https://".insteadOf git://
 }
 
-if [[ -n "${opthash[(i)-h]}" ]]; then
-	# -hまたは--helpが指定された場合
-	usage
-	exit 1
-elif [[ -n "${opthash[(i)-m]}" ]]; then
-	open -a Google\ Chrome https://mail.google.com/mail/ca/u/0/\#inbox
-elif [[ -n "${opthash[(i)-c]}" ]]; then
-	open -a Google\ Chrome https://calendar.google.com/calendar/render\?tab=Tc\#main_7
-else
-    if [ $# != 0 ]; then
-		for i in $*; do
-			# $strが空じゃない場合、検索ワードを+記号でつなぐ(and検索)
-			str="$str${str:++}$i"
-		done
-		opt='search?num=100'
-		opt="${opt}&q=${str}"
+function unset_proxy() {
+  unset http_proxy
+  unset HTTP_PROXY
+  unset ftp_proxy
+  unset FTP_PROXY
+  unset all_proxy
+  unset ALL_PROXY
+  unset https_proxy
+  unset HTTPS_PROXY
 
-		open -a Google\ Chrome http://www.google.co.jp/$opt
-	else
-		open -a Google\ Chrome http://www.google.co.jp/
-	fi
+  git config --global --unset http.proxy
+  git config --global --unset https.proxy
+  git config --global --unset url."https://".insteadOf
+}
+
+if [ "`networksetup -getcurrentlocation`" = "$switch_trigger" ]; then
+  echo "Switch to proxy for university network"
+  set_proxy
+else
+  unset_proxy
 fi
