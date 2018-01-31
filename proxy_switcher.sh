@@ -25,7 +25,7 @@ usage() {
 	exit 1
 }
 
-proxy="http://$user_name:$password@$proxy_address/"
+proxy="http://$user_name:$password@$proxy_address:$proxy_port/"
 if [[ -n "${opthash[(i)-h]}" ]]; then
 	# -hまたは--helpが指定された場合
 	usage
@@ -39,6 +39,7 @@ elif [[ -n "${opthash[(i)-0]}" ]]; then
 	git config --global --unset http.proxy
 	git config --global --unset https.proxy
 	git config --global --unset url."https://".insteadOf
+	echo "Proxy OFF"
 	exit 1
 elif [[ -n "${opthash[(i)-1]}" ]]; then
 	export http_proxy=$proxy
@@ -49,8 +50,9 @@ elif [[ -n "${opthash[(i)-1]}" ]]; then
 	git config --global http.proxy $proxy
 	git config --global https.proxy $proxy
 	git config --global url."https://".insteadOf git://
+	echo "Proxy ON"
 	exit 1
 else
-	echo "オプションを指定してください"
-	exit 0
+	usage
+	exit 1
 fi
