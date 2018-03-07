@@ -25,7 +25,7 @@ function tex(){
 		platex -kanji=utf8 ${FILENAME}.tex
 		platex -kanji=utf8 ${FILENAME}.tex
 		dvipdfmx -p a4 ${FILENAME}.dvi
-#		open ${FILENAME}.pdf
+		# open ${FILENAME}.pdf
     fi
     echo ${VAR}
 	rm -rf *.aux *.log *.dvi *.bbl *.blg

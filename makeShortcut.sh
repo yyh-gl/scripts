@@ -16,4 +16,4 @@ else
 fi
 
 # シェルの更新
-exec $SHELL
+exec $SHELL -l
