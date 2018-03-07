@@ -25,7 +25,7 @@ function tex(){
 		platex -kanji=utf8 ${FILENAME}.tex
 		platex -kanji=utf8 ${FILENAME}.tex
 		dvipdfmx -p a4 ${FILENAME}.dvi
-		open ${FILENAME}.pdf
+#		open ${FILENAME}.pdf
     fi
     echo ${VAR}
 	rm -rf *.aux *.log *.dvi *.bbl *.blg
@@ -34,5 +34,5 @@ function tex(){
 ## YaTeX用 コンパイル & プレビュー プログラム
 if [ $# = 1 ]; then
 	tex $1 &&
-	open -a preview $1
+	echo $1 | sed -e "s/tex/pdf/" | xargs open -a preview
 fi
