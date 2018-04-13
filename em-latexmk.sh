@@ -35,5 +35,6 @@ function tex(){
 if [ $# = 1 ]; then
     tex $1 &&
     echo "${1%.*}.pdf" "pdf_${1%.*}.pdf" | xargs -n 2 mv &&
-    open -a preview "pdf_${1%.*}.pdf"
+    #open -a preview "pdf_${1%.*}.pdf"
+    open -a 'Adobe Acrobat Reader DC' "pdf_${1%.*}.pdf"
 fi
