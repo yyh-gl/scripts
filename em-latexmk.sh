@@ -33,8 +33,8 @@ function tex(){
 
 ## YaTeX用 コンパイル & プレビュー プログラム
 if [ $# = 1 ]; then
-    tex $1 &&
-    echo "${1%.*}.pdf" "pdf_${1%.*}.pdf" | xargs -n 2 mv &&
-    #open -a preview "pdf_${1%.*}.pdf"
-    open -a 'Adobe Acrobat Reader DC' "pdf_${1%.*}.pdf"
+    cp $1 "pdf_${1}" &&
+    tex "pdf_${1}" &&
+    open -a preview "pdf_${1%.*}.pdf" &&
+    rm -f "pdf_${1}"
 fi
