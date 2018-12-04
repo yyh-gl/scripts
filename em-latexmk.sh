@@ -28,7 +28,7 @@ function tex(){
         # open ${FILENAME}.pdf
     fi
     echo ${VAR}
-    rm -rf *.aux *.log *.dvi *.bbl *.blg
+    rm -rf *.aux *.lof *.log *.lot *.fls *.out *.toc *.fmt *.dvi *.bbl *.blg *.fdb_latexmk *.synctex *.synctex.gz
 }
 
 ## YaTeX用 コンパイル & プレビュー プログラム
