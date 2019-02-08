@@ -2,9 +2,9 @@
 
 ## 実行ディレクトリへのショートカットをzshrcに追加するプログラム
 
-# 現在ディレクトリの絶対パスを取得しzshrcに追記
+# 現在ディレクトリの相対パスを取得しzshrcに追記
 if [ $# -eq 1 ]; then
-	echo "alias $1='cd $PWD/'" >> ~/.zprezto/runcoms/zshrc &&
+	echo "alias $1='cd ~${PWD##*/Users/yyh-gl}/'" >> ~/.zprezto/runcoms/zshrc &&
 	echo "\nMaking Shortcut is Done" &&
 	echo "  >> $PWD" &&
 	exit 0
