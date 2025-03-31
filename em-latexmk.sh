@@ -33,8 +33,8 @@ function tex(){
 
 ## YaTeX用 コンパイル & プレビュー プログラム
 if [ $# = 1 ]; then
-    cp $1 "pdf_${1}" &&
-    tex "pdf_${1}" &&
-    open -a preview "pdf_${1%.*}.pdf" &&
+    cp $1 "pdf_${1}"
+    tex "pdf_${1}"
+    open -a preview "pdf_${1%.*}.pdf"
     rm -f "pdf_${1}"
 fi

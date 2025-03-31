@@ -2,11 +2,11 @@
 
 # 現在ディレクトリの絶対パスを取得しDesktopにシンボリックリンクを作成
 if [ $# -eq 0 ]; then
-		ln -s "$PWD"/ ~/Desktop &&
+		ln -s "$PWD"/ ~/Desktop
 		echo "\nMaking Symbolic Link is Done"
 		exit 0
 elif [ $# -eq 1 ]; then
-		ln -s "$PWD"/ ~/Desktop/$1 &&
+		ln -s "$PWD"/ ~/Desktop/$1
 		echo "\nMaking Symbolic Link is Done"
 		exit 0
 else
